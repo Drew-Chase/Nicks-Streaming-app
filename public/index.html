@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Nicks special watch time</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <script src="jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+<main class="center vertical horizontal">
+    <div id="container" class="center vertical horizontal playing">
+        <video autoplay></video>
+        <div id="controls" class="col">
+            <div id="progress-bar" class="row">
+                <div id="progress-bar-fill"></div>
+            </div>
+            <div class="row fill">
+                <div id="right-controls" class="fill row center vertical">
+                    <div id="play-button" class="player-component" title="Play (k)"><i class="fa fa-play"></i></div>
+                    <div id="volume-slider" class="player-component"><i class="fa fa-volume-low"></i></div>
+                    <span class="duration"><span id="current-time">00:00:00</span> / <span id="duration">00:00:00</span></span>
+                </div>
+                <div id="left-controls" class="row">
+                    <div id="movies-button" class="player-component" onclick="openSearchPopup()" title="Select Movie" tabindex="-1"><i class="fa-solid fa-clapperboard"></i>
+                    </div>
+                    <div id="fullscreen-button" class="player-component" tabindex="-1" title="Toggle Fullscreen"><i class="fa fa-expand"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div id="search-popup" class="center horizontal vertical">
+    <div id="search-content" class="center horizontal vertical col">
+        <div id="close-button" onclick="openSearchPopup()"><i class="fa fa-close"></i></div>
+        <div class="floating-input">
+            <input type="search" name="search" id="search" placeholder="Search">
+            <label for="search">Search</label>
+        </div>
+        <div id="search-items" class="col">
+            <div class="search-item">Video 1</div>
+            <div class="search-item">Video 2</div>
+            <div class="search-item">Video 3</div>
+            <div class="search-item">Video 4</div>
+        </div>
+    </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<!--<script src="main.js"></script>-->
+<script src="interface.js"></script>
+</body>
+</html>
