@@ -1,0 +1,6 @@
+/node_modules/
+/public/Movies/**/*
+jquery-3.7.1.min.js
+/public/fontawesome/
+/.idea/
+package-lock.json
