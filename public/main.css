@@ -1,0 +1,227 @@
+body {
+    color-scheme: dark;
+    background-color: #0f0f0f;
+    color: white;
+    margin: 0;
+}
+
+.fill, .row, .col, .center {
+    display: flex;
+}
+
+.fill {
+    flex-grow: 1;
+    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
+}
+
+.row {
+    flex-direction: row;
+}
+
+.col {
+    flex-direction: column;
+}
+
+.center.horizontal {
+    justify-content: center;
+}
+
+.center.vertical {
+    align-items: center;
+}
+
+main {
+    width: 100%;
+    height: 100dvh;
+}
+
+#container {
+    position: relative;
+    width: 95%;
+    height: 95dvh;
+    overflow: hidden;
+    border-radius: 12px;
+    margin: auto;
+}
+
+#container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateY(0);
+    transition: opacity, .2s;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.25), transparent);
+    pointer-events: none;
+}
+#container.playing video{
+    cursor: none;
+}
+#container:not(.playing):hover::before {
+    opacity: 1;
+}
+
+#container:not(.playing):hover #controls {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+video {
+    object-fit: contain;
+    background-color: #0b0b0b;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+#container #controls {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity, translate;
+    transition-duration: 1s;
+}
+
+#play-button.player-component {
+    font-size: 2rem;
+}
+
+.player-component {
+    font-size: 1.5rem;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    padding: 1rem;
+    opacity: .8;
+    transition: opacity .1s;
+}
+
+.player-component:hover {
+    opacity: 1;
+}
+
+
+#search-popup {
+    position: fixed;
+    inset: 0;
+    background-color: hsla(0, 0%, 0%, 0);
+    opacity: 0;
+    transform: translateY(10%);
+    transition: opacity, transform;
+    transition-duration: .2s;
+    pointer-events: none;
+}
+
+#search-popup.open {
+    pointer-events: all;
+    opacity: 1;
+    background-color: hsla(0, 0%, 0%, .5);
+    transform: translateY(0);
+}
+
+#search-popup #search-content #close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    width: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    aspect-ratio: 1;
+}
+
+#search-popup #search-content #close-button:hover {
+    background: hsla(0, 0%, 100%, 0.15);
+}
+
+#search-content {
+    position: relative;
+    background-color: #212121;
+    max-width: 70%;
+    max-height: 100px;
+    border-radius: 12px;
+    transition: max-width, max-height;
+    transition-duration: .2s;
+    width: 70%;
+    height: 80%;
+}
+
+#search-popup[active] #search-content {
+    max-width: 70%;
+    max-height: 80%;
+}
+
+#search-popup .floating-input {
+    position: relative;
+    width: 90%;
+}
+
+#search-popup .floating-input label {
+    position: absolute;
+    left: 1rem;
+    top: 0;
+    transform: translateY(1rem);
+    transition: transform .2s;
+}
+
+#search-popup .floating-input input:not(:placeholder-shown) ~ label {
+    transform: translateY(0);
+    font-size: .8rem;
+    opacity: .7;
+}
+
+#search-popup .floating-input input::placeholder {
+    opacity: 0;
+}
+
+#search-popup input {
+    border: none;
+    border-radius: 100px;
+    background-color: hsl(0, 0%, 7%);
+    outline: 1px solid hsl(0, 0%, 19%);
+    padding: 1rem;
+    width: 100%;
+}
+
+#search-popup #search-items {
+    display: none;
+}
+
+#search-popup[active] #search-items {
+    display: flex;
+    height: 75%;
+    padding: 1rem;
+    width: 90%;
+    overflow-y: scroll;
+}
+
+#search-popup #search-items .movie {
+    width: calc(100% - 3rem);
+    height: 2rem;
+    background-color: hsla(0, 0%, 7%, 0.5);
+    border-radius: 12px;
+    margin: 5px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#search-popup #search-items .movie:hover {
+    background-color: hsla(0, 0%, 7%, 1);
+    cursor: pointer;
+}
+
+#container.fullscreen #controls #movies-button {
+    display: none;
+}
